@@ -1,0 +1,59 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <title>Speech2Text</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" type="image/ico" href="{% static 'microphone.png' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://markjivko.com/dist/recorder.js"></script>
+    <script src="{% static 'script.js' %}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="holder text-center mt-3">
+        <h1>Speech to Text</h1>
+        <div data-role="controls">
+            <hr><br>
+            {% comment %} <a href="{% url 'record_audio_mic' %}">Record & Speech to Text</a><br><br><hr> {% endcomment %}
+            <button id="record_btn"><i id="record_icon" class="fa-solid fa-microphone" style="color: #f80d0d;"></i></button>
+
+            
+        </div>
+        <div data-role="recordings"></div>
+        <br>
+        <a class="text-decoration-none text-center btn btn-warning btn-sm" id="url_id" data-url="{% url 'record' %}" href="{% url 'record' %}">Click here to upload your speec</a>
+        <hr>
+
+        <div class="container border border-dark rounded-lg p-5 mt-3 w-75 text-center">
+            <h3>Your recorded speect to text show here after stop</h3><br>
+            <h4 id="convert_text_id"></h4>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+    <script>
+        $("#record_btn").click(function () {
+            if ($("#record_icon").attr("class") === "fa-solid fa-microphone") {
+                $("#record_icon").removeClass('fa-microphone').addClass('fa-pause');
+            } else{
+                $("#record_icon").removeClass('fa-pause').addClass('fa-microphone');
+            }
+        })
+    </script>
+</body>
+
+</html>
